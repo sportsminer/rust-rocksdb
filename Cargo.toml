@@ -16,6 +16,10 @@ exclude = [
     "test/**/*",
 ]
 
+[lib]
+name = "rocksdb"
+crate-type = ["staticlib", "cdylib"]
+
 [features]
 default = ["snappy", "lz4", "zstd", "zlib", "bzip2"]
 valgrind = []
