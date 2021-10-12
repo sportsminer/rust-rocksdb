@@ -115,9 +115,15 @@ fn build_rocksdb() {
     }
 
     if target.contains("aarch64") {
-        lib_sources.push("util/crc32c_arm64.cc")
+        lib_sources.push("util/crc32c_arm64.cc");
     }
+    if target.contains("apple-ios") {
+        lib_sources.push("util/crc32c_arm64.cc");
+        config.define("OS_MACOSX", None);
+        config.define("ROCKSDB_PLATFORM_POSIX", None);
+        config.define("ROCKSDB_LIB_IO_POSIX", None);
 
+    }
     if target.contains("darwin") {
         config.define("OS_MACOSX", None);
         config.define("ROCKSDB_PLATFORM_POSIX", None);
